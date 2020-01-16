@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.nacos</groupId>
+    <artifactId>my-nacos-parent</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <artifactId>my-nacos-web</artifactId>
+  <name>网站服务</name>
+  
+  <dependencies>
+  
+  			<dependency>
+                <groupId>com.my.nacos</groupId>
+                <artifactId>my-nacos-user-api</artifactId>
+            </dependency>
+            
+            <!-- nacos注册中心 -->
+            <dependency>
+			    <groupId>org.springframework.cloud</groupId>
+			    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+			</dependency>
+            
+              <!-- EnableCircuitBreaker 单独使用，Feign不依赖这个也可以实现熔断 -->
+            <dependency>
+		        <groupId>org.springframework.cloud</groupId>
+		        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		    </dependency>
+            
+  </dependencies>
+  
+</project>

@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.nacos</groupId>
+    <artifactId>my-nacos-parent</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <artifactId>my-nacos-user-provide</artifactId>
+  <dependencies>
+  			<dependency>
+                <groupId>com.my.nacos</groupId>
+                <artifactId>my-nacos-user-api</artifactId>
+            </dependency>
+            
+            <!-- 链接池 -->
+            <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid-spring-boot-starter.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<scope>runtime</scope>
+			</dependency>
+            
+            <!-- nacos注册中心 -->
+            <dependency>
+			    <groupId>org.springframework.cloud</groupId>
+			    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+			</dependency>
+			
+			
+			
+
+  </dependencies>
+</project>

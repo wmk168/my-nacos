@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.nacos</groupId>
+    <artifactId>my-nacos-parent</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <artifactId>my-nacos-user-api</artifactId>
+  <dependencies>
+  		
+  		<dependency>
+         	<groupId>com.my.nacos</groupId>
+   			<artifactId>my-nacos-base</artifactId>
+   		</dependency>
+  
+  		<!-- mybatis plus start -->
+  		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>${mybatis-plus.version}</version>
+		</dependency>
+		
+		<!-- mybatis plus end -->
+		
+		<!-- 客户端feign 内部使用了ribbon负载均衡 -->
+	   		<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-openfeign</artifactId>
+			</dependency>
+			<!-- 客户端feign 连接池，配置文件不用配置启用项，默认是自动开启 -->
+			<dependency>
+			    <groupId>io.github.openfeign</groupId>
+			    <artifactId>feign-httpclient</artifactId>
+			</dependency>
+			
+			<!-- feign 支持form提交 -->
+            <dependency>
+			    <groupId>io.github.openfeign.form</groupId>
+			    <artifactId>feign-form</artifactId>
+			</dependency>
+			<dependency>
+			    <groupId>io.github.openfeign.form</groupId>
+			    <artifactId>feign-form-spring</artifactId>
+			</dependency>
+		
+  </dependencies>
+</project>
