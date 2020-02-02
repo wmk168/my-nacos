@@ -10,6 +10,7 @@ import com.my.nacos.base.vo.ResultResVo;
 import com.my.nacos.user.api.UserApi;
 import com.my.nacos.user.po.UserPo;
 import com.my.nacos.user.vo.UserRegReqVo;
+import com.my.nacos.user.vo.UserRegResVo;
 
 /**
  * 断容错回调，可以废除该接口
@@ -17,7 +18,7 @@ import com.my.nacos.user.vo.UserRegReqVo;
  * /类请看{@link FallbackControllerAdvice.class}
  * @author wmk
  */
-@Component
+//@Component
 @Deprecated
 public class UserApiFallback //extends BaseFallbackApi<UserPo> implements UserApi
 {
@@ -28,6 +29,11 @@ public class UserApiFallback //extends BaseFallbackApi<UserPo> implements UserAp
 	 */
 	
 	public ResultResVo<Integer> userReg(UserRegReqVo req) {
+		return ResultResVo.fallbackFail();
+	}
+
+	public ResultResVo<UserRegResVo> userRegRet(UserRegReqVo req) {
+		// TODO Auto-generated method stub
 		return ResultResVo.fallbackFail();
 	}
 	

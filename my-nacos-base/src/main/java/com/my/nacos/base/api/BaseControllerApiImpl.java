@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.my.nacos.base.execution.ServiceException;
 import com.my.nacos.base.service.BaseService;
 import com.my.nacos.base.vo.ResultResVo;
 
@@ -39,6 +40,12 @@ public class BaseControllerApiImpl<T> implements BaseControllerApi<T>{
 	
 	@Override
 	public ResultResVo<T> getById(@RequestParam("id") Serializable id) {
-		return ResultResVo.success(baseService.getById(id));
+		try {
+			return ResultResVo.success(baseService.getById(id));
+		} catch (Throwable e) {
+			//自定义异常
+			throw new ServiceException(ResultResVo.fail(null),e);
+		}
+		
 	}
 }

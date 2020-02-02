@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.my.nacos.base.vo.ResultResVo;
+import com.my.nacos.order.api.OrderApi;
+import com.my.nacos.order.po.OrderPo;
 import com.my.nacos.user.api.UserApi;
 import com.my.nacos.user.po.UserPo;
 import com.my.nacos.user.vo.UserRegReqVo;
@@ -20,13 +22,24 @@ public class UserController{
 
 	@Autowired
 	private UserApi userApi;
+	@Autowired
+	private OrderApi orderApi;
 	
 	
 	@RequestMapping("getById")
 	public ResultResVo<UserPo> getById(@RequestParam("id") Integer id) {
 		log.info("请求ID={}",id);
-
-		return userApi.getById(id);
+		/*try {
+			ResultResVo<OrderPo> resultResVo= orderApi.getById(id);
+			log.info("order={} ",resultResVo.getCode());
+		}catch (Exception e) {
+			log.error("order 异常 ==>",e);
+		}
+		*/
+		//支持自定义返回状态码，中间有问题一直是状态码对象类T类型转换错误
+		ResultResVo<UserPo> rt=userApi.getById(id);
+		log.info("UserPO={}",rt.getCode());
+		return rt;
 	}
 	
 	

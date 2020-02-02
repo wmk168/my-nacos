@@ -37,6 +37,8 @@
     <module>my-nacos-user-provide</module>
     <module>my-nacos-base</module>
     <module>my-nacos-web</module>
+    <module>my-nacos-order-api</module>
+    <module>my-nacos-order-provide</module>
   </modules>
   
   <dependencies>
@@ -67,6 +69,11 @@
             <dependency>
                 <groupId>com.my.nacos</groupId>
                 <artifactId>my-nacos-user-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+             <dependency>
+                <groupId>com.my.nacos</groupId>
+                <artifactId>my-nacos-order-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             

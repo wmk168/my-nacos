@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.my.nacos.base.api.BaseControllerApi;
 import com.my.nacos.base.vo.ResultResVo;
+import com.my.nacos.user.fallback.UserApiFallback;
 import com.my.nacos.user.po.UserPo;
 import com.my.nacos.user.vo.UserRegReqVo;
 import com.my.nacos.user.vo.UserRegResVo;

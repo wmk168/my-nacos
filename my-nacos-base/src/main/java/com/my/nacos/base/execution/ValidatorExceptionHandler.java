@@ -59,7 +59,7 @@ public class ValidatorExceptionHandler {
 				}
 			}
 		} catch (Throwable  tx) {
-			log.info("转换校验参数异常",tx);
+			log.error("转换校验参数异常",tx);
 		}
 		return ResultResVo.validError(null,fieldErrorVos);
 	}

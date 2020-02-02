@@ -16,7 +16,7 @@ public class ResultResVo<T>{
 	String code;
 	String msg;
 	T data;
-	T error;
+	Object error;//之前定义成T导致自定义状态码无法返回feign客户端，坑爹，找了很久
 	
 	public static <T> ResultResVo<T> setResult(CodeMsgResVo codeMsg){
 		return setResult(codeMsg, null);
@@ -42,13 +42,13 @@ public class ResultResVo<T>{
 		return validError(msg,null);
 	}
 	
-	public static <T> ResultResVo<T> validError(String msg,T error){
+	public static <T> ResultResVo<T> validError(String msg,Object error){
 		CodeMsgResVo codeMsgResVo=BaseResultStatus.VALID_ERROR;
 		return new ResultResVo<T>().setCode(codeMsgResVo.code)
 				.setMsg(msg==null?codeMsgResVo.msg:msg).setData(null).setError(error);
 	}
 
-	public ResultResVo<T> setError(T error) {
+	public ResultResVo<T> setError(Object error) {
 		this.error = error;
 		return this;
 	}
