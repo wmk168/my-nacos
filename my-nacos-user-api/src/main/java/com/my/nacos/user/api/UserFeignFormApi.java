@@ -23,7 +23,7 @@ import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
 
 //测试支持Http From提交，没有办法兼容两种方式，测试也未通过，暂时不使用该方式
-@FeignClient(value = "user-provider", path = "userFrom",configuration = UserFeignFormApi.FormSupportConfig.class
+@FeignClient(name = "user-provider", path = "userFrom"//,configuration = UserFeignFormApi.FormSupportConfig.class
 )
 public interface UserFeignFormApi extends BaseControllerApi<UserPo>{
 	

@@ -17,8 +17,13 @@
      
      <!-- 2.0.4.RELEASE 2.0.9.RELEASE,兼容Cloud版本Finchley
                            到2.1.0版本以上就不支持了xxxxx，因为2.1以后的Cloud版本是Greenwich -->
-     <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
-     <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+     <!-- <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
+     <spring-cloud.version>Finchley.RELEASE</spring-cloud.version> -->
+     
+     <!-- 升级到2.1版本 -->
+      <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
+      <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+     
      
      <nacos-config-spring-cloud.version>0.2.1.RELEASE</nacos-config-spring-cloud.version>
      <nacos-config-spring-boot.version>0.2.1</nacos-config-spring-boot.version>
@@ -43,7 +48,7 @@
   
   <dependencies>
   
-  		 <dependency>
+  		    <dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -60,7 +65,7 @@
   
    <dependencyManagement>
         <dependencies>
-        	
+        
         	<dependency>
                 <groupId>com.my.nacos</groupId>
                 <artifactId>my-nacos-base</artifactId>
@@ -95,8 +100,8 @@
 			    <version>${feign-form.version}</version>
 			</dependency>
 		
-            <dependency>
-            	 <!-- 这里继承Spring Boot提供的父工程 ，有这个后其他项目引用就不用加版本号 -->
+		 	<!-- 这里继承Spring Boot提供的父工程 ，有这个后其他项目引用就不用加版本号 -->
+             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
