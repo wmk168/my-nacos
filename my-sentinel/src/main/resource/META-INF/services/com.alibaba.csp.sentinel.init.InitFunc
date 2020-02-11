@@ -1,0 +1,4 @@
+# 内嵌依赖实现类
+# com.my.nacos.sentinel.cluster.embedded.DemoClusterInitFunc
+# 单独依赖实现类alone
+com.my.nacos.sentinel.cluster.alone.AloneClusterInitFunc
