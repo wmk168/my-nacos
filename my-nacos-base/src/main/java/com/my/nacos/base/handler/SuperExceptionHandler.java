@@ -1,10 +1,11 @@
-package com.my.nacos.base.execution;
+package com.my.nacos.base.handler;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.my.nacos.base.execution.ServiceException;
 import com.my.nacos.base.vo.ResultResVo;
 
 import lombok.extern.slf4j.Slf4j;

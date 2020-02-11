@@ -25,5 +25,9 @@ public interface BaseResultStatus {
 	 * 校验参数错误
 	 */
 	public CodeMsgResVo VALID_ERROR=new CodeMsgResVo("9970","校验参数错误");
+	/**
+	 * 流量控制错误
+	 */
+	public CodeMsgResVo FLOW_ERROR=new CodeMsgResVo("9960","流量控制错误");
 	
 }
