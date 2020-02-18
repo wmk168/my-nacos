@@ -23,7 +23,7 @@ public class SuperExceptionHandler {
 	
 	@ExceptionHandler(value=ServiceException.class)
 	public ResultResVo<?> exceptionHandler(ServiceException e){
-		log.error("业务服务异常",e);	
-		return ResultResVo.fail(null).setError(e.getMessage());
+		log.error("业务服务异常",e!=null?e:"异常对象NULL");	
+		return ResultResVo.fail(null).setError(e!=null?e.getMessage():"业务操作异常");
 	}
 }

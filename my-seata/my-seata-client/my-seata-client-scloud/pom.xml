@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.seata</groupId>
+    <artifactId>my-seata-client</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+
+  <artifactId>my-seata-client-scloud</artifactId>
+
+  <name>my-seata-client-scloud</name>
+
+ 
+  <dependencies>
+
+	<!-- seata分布式事务依赖 -->
+    <dependency>
+    	 <groupId>com.alibaba.cloud</groupId>
+         <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+    </dependency>
+
+     <!-- nacos注册中心 -->
+    <dependency>
+		<groupId>org.springframework.cloud</groupId>
+	    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+	</dependency>
+	 
+
+    <dependency>
+    	<groupId>com.my.seata</groupId>
+    	<artifactId>my-seata-user-api</artifactId>
+    </dependency>
+
+    <dependency>
+    	<groupId>com.my.seata</groupId>
+    	<artifactId>my-seata-order-api</artifactId>
+    </dependency>
+    
+  </dependencies>
+</project>

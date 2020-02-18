@@ -1,0 +1,29 @@
+registry {
+  # file 、nacos 、eureka、redis、zk、consul、etcd3、sofa
+  #默认file,改成nacos
+  type = "nacos"
+
+  nacos {
+    serverAddr = "localhost"
+    namespace = ""
+    cluster = "default"
+  }
+
+  file {
+    name = "file.conf"
+  }
+}
+
+config {
+  # file、nacos 、apollo、zk、consul、etcd3
+  type = "nacos"
+
+  nacos {
+    serverAddr = ""
+    namespace = "SEATA_GROUP"
+  }
+  
+  file {
+    name = "file.conf"
+  }
+}

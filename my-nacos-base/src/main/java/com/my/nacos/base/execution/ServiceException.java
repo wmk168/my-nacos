@@ -15,6 +15,7 @@ public class ServiceException extends RuntimeException{
 	}
 	
 	public ServiceException(ResultResVo<?> resultResVo) {
+		super(new RuntimeException(resultResVo.getError()!=null?resultResVo.getError().toString():resultResVo.getMsg()+""));
 		this.code=resultResVo.getCode();
 		this.msg=resultResVo.getMsg();
 	}

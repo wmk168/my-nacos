@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.seata</groupId>
+    <artifactId>my-seata</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <artifactId>my-seata-order</artifactId>
+  <packaging>pom</packaging>
+  <description>订单</description>
+  <modules>
+    <module>my-seata-order-dao</module>
+    <module>my-seata-order-mobel</module>
+    <module>my-seata-order-service</module>
+    <module>my-seata-order-api</module>
+    <module>my-seata-order-web</module>
+  </modules>
+  <properties>
+  	<order.project.versoin>0.0.1-RELEASE</order.project.versoin>
+  </properties>
+  <dependencies>
+  		<dependency>
+    		<groupId>com.my.nacos</groupId>
+            <artifactId>my-nacos-base</artifactId>
+    	</dependency>
+  </dependencies>
+  
+   <dependencyManagement>
+        <dependencies>
+        	<dependency>
+	    		<groupId>com.my.seata</groupId>
+	            <artifactId>my-seata-order-mobel</artifactId>
+	            <version>${order.project.versoin}</version>
+    		</dependency>
+    		<dependency>
+	    		<groupId>com.my.seata</groupId>
+	            <artifactId>my-seata-order-dao</artifactId>
+	            <version>${order.project.versoin}</version>
+    		</dependency>
+    		<dependency>
+	    		<groupId>com.my.seata</groupId>
+	            <artifactId>my-seata-order-service</artifactId>
+	            <version>${order.project.versoin}</version>
+    		</dependency>
+    		<dependency>
+	    		<groupId>com.my.seata</groupId>
+	            <artifactId>my-seata-order-api</artifactId>
+	            <version>${order.project.versoin}</version>
+    		</dependency>
+    		
+        </dependencies>
+  </dependencyManagement>
+        
+</project>

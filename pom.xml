@@ -47,6 +47,7 @@
     
     <module>my-sentinel</module>
     <module>my-sentinel-cluster-alone</module>
+    <module>my-seata</module>
   </modules>
   
   <dependencies>
@@ -123,10 +124,17 @@
                 <scope>import</scope>
             </dependency>
              
+             <!-- 
+             2.1.0.RELEASE兼容spring cloud Greenwich.RELEASE（2.1.x版本）
+             2.2.0.RELEASE兼容spring cloud Hoxton.RELEASE（2.2.x版本）
+                                      如果升级到2.2.0后：
+             seata版本就是最新版本，提供者服务无法注册到nacos
+      	     -->
 	        <dependency>
 	            <groupId>com.alibaba.cloud</groupId>
 	            <artifactId>spring-cloud-alibaba-dependencies</artifactId>
 	            <version>2.1.0.RELEASE</version>
+	            
 	            <type>pom</type>
 	            <scope>import</scope>
 	        </dependency>

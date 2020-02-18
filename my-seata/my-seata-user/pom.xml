@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.seata</groupId>
+    <artifactId>my-seata</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <artifactId>my-seata-user</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>my-seata-user-mobel</module>
+  	<module>my-seata-user-dao</module>
+    <module>my-seata-user-service</module>
+    <module>my-seata-user-web</module>
+    <module>my-seata-user-api</module>
+  </modules>
+   
+  <properties>
+  	<user.project.versoin>0.0.1-RELEASE</user.project.versoin>
+  </properties>
+  
+  <dependencies>
+  		<dependency>
+    		<groupId>com.my.nacos</groupId>
+            <artifactId>my-nacos-base</artifactId>
+    	</dependency>
+  </dependencies>
+  
+   <dependencyManagement>
+        <dependencies>
+        	<dependency>
+	    		<groupId>com.my.seata</groupId>
+	            <artifactId>my-seata-user-mobel</artifactId>
+	            <version>${user.project.versoin}</version>
+    		</dependency>
+    		<dependency>
+	    		<groupId>com.my.seata</groupId>
+	            <artifactId>my-seata-user-dao</artifactId>
+	            <version>${user.project.versoin}</version>
+    		</dependency>
+    		 <dependency>
+	    		<groupId>com.my.seata</groupId>
+	            <artifactId>my-seata-user-service</artifactId>
+	            <version>${user.project.versoin}</version>
+    		</dependency>
+    		<dependency>
+	    		<groupId>com.my.seata</groupId>
+	            <artifactId>my-seata-user-api</artifactId>
+	            <version>${user.project.versoin}</version>
+    		</dependency>
+    		
+        </dependencies>
+  </dependencyManagement>
+</project>
