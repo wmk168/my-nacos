@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.nacos</groupId>
+    <artifactId>my-rocketmq</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <groupId>com.my.nacos</groupId>
+  <artifactId>my-rocketmq-sboot</artifactId>
+  <version>0.0.1-RELEASE</version>
+  <name>my-rocketmq-sboot</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+	</dependency>
+	<!-- 服务器broken版本与客户端一致，才会自动创建topic -->
+	<dependency>
+		<groupId>org.apache.rocketmq</groupId>
+		<artifactId>rocketmq-client</artifactId>
+		<version>4.6.0</version>
+	</dependency>
+	
+	<!-- 
+	升级到2.2.x版本后，这个就不用引入了
+	<dependency>
+	    <groupId>org.springframework.cloud</groupId>
+	    <artifactId>spring-cloud-stream-reactive</artifactId>
+	    <version>2.1.4.RELEASE</version>
+	</dependency> -->
+	
+       <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+       <dependency>
+       	<groupId>org.springframework.boot</groupId>
+       	<artifactId>spring-boot-starter-test</artifactId>
+       </dependency>
+       <dependency>
+       	<groupId>org.projectlombok</groupId>
+       	<artifactId>lombok</artifactId>
+       </dependency>
+  </dependencies>
+</project>

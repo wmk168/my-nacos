@@ -48,6 +48,7 @@
     <module>my-sentinel</module>
     <module>my-sentinel-cluster-alone</module>
     <module>my-seata</module>
+    <module>my-rocketmq</module>
   </modules>
   
   <dependencies>
