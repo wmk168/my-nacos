@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.nacos</groupId>
+    <artifactId>my-nacos-geteway</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <groupId>com.my.nacos</groupId>
+  <artifactId>my-nacos-geteway-web</artifactId>
+  <version>0.0.1-RELEASE</version>
+  <name>my-nacos-geteway-web</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-gateway</artifactId>
+	</dependency>
+	
+ 	<!-- nacos注册中心 -->
+     <dependency>
+			    <groupId>org.springframework.cloud</groupId>
+			    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+     </dependency>
+     
+       <!-- hystrix 熔断器 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+
+
+<!-- 	<dependency>
+			    <groupId>io.github.openfeign.form</groupId>
+			    <artifactId>feign-form</artifactId>
+			    
+			</dependency>
+			<dependency>
+			    <groupId>io.github.openfeign.form</groupId>
+			    <artifactId>feign-form-spring</artifactId>
+			   
+			</dependency>
+
+    		<dependency>
+                <groupId>com.my.nacos</groupId>
+                <artifactId>my-nacos-user-api</artifactId>
+                <exclusions>
+                	<exclusion>
+                		<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-web</artifactId>
+                	</exclusion>
+                </exclusions>
+            </dependency> -->
+
+           
+
+       
+  </dependencies>
+</project>

@@ -49,6 +49,7 @@
     <module>my-sentinel-cluster-alone</module>
     <module>my-seata</module>
     <module>my-rocketmq</module>
+    <module>my-nacos-geteway</module>
   </modules>
   
   <dependencies>
