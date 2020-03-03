@@ -16,10 +16,10 @@ import com.my.nacos.base.vo.FieldErrorVo;
 import com.my.nacos.base.vo.ResultResVo;
 
 import lombok.extern.slf4j.Slf4j;
-
+//ValidatorExceptionHandler不能使用该名称，因为这个系统已经存在，使用后就被覆盖了
 @ControllerAdvice
 @Slf4j
-public class ValidatorExceptionHandler {
+public class MyValidatorExceptionHandler {
 	
 	
 	@ExceptionHandler(value=ValidationException.class)
