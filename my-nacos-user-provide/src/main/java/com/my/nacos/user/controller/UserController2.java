@@ -37,4 +37,9 @@ public class UserController2 extends BaseControllerApiImpl<UserPo> implements Us
 		return ResultResVo.success(userRegResVo);
 	}
 
+	@Override
+	public ResultResVo<Integer> userRegGetAndPost(UserRegReqVo req) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

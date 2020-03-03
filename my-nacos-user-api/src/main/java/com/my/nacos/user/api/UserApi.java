@@ -1,6 +1,8 @@
 package com.my.nacos.user.api;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.SpringQueryMap;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.my.nacos.base.api.BaseControllerApi;
@@ -23,5 +25,9 @@ public interface UserApi extends BaseControllerApi<UserPo>{
 	
 	@RequestMapping(path = "userRegRet")
 	public ResultResVo<UserRegResVo> userRegRet(UserRegReqVo req);
+	
+	//@SpringQueryMap 支持get,post**************88
+	@RequestMapping(path = "userRegGetAndPost")
+	public ResultResVo<Integer> userRegGetAndPost(@Validated @SpringQueryMap UserRegReqVo req);
 	
 }

@@ -36,5 +36,12 @@ public class UserController extends BaseControllerApiImpl<UserPo> implements Use
 		userRegResVo.setId(userPo.getId());
 		return ResultResVo.success(userRegResVo);
 	}
+	
+	@Override
+	public ResultResVo<Integer> userRegGetAndPost(UserRegReqVo req) {
+		UserPo userPo=new UserPo();
+		BeanUtils.copyProperties(req, userPo);
+		return ResultResVo.success(baseService.add(userPo));
+	}
 
 }

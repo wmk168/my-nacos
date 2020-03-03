@@ -78,4 +78,9 @@ public class UserController{
 		return rt;
 	}
 	
+	@RequestMapping("userRegGetAndPost")
+	public ResultResVo<Integer> userRegGetAndPost(UserRegReqVo userRegReqVo) {
+		return userApi.userRegGetAndPost(userRegReqVo);
+	}
+	
 }

@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@SpringBootApplication(scanBasePackages ="com.my.nacos")
+@SpringBootApplication(scanBasePackages ="com.my")
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "com.my.nacos")
 @MapperScan(basePackages = "com.my.nacos.*.dao")
