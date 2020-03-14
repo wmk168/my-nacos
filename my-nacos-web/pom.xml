@@ -23,7 +23,7 @@
             <dependency>
 			    <groupId>org.springframework.cloud</groupId>
 			    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-			</dependency>
+			</dependency> 
             
               <!-- EnableCircuitBreaker 单独使用，Feign不依赖这个也可以实现熔断 -->
             <dependency>
@@ -31,6 +31,7 @@
 		        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		    </dependency>
             
+      
   </dependencies>
   
 </project>
