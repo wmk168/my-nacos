@@ -50,6 +50,8 @@
     <module>my-seata</module>
     <module>my-rocketmq</module>
     <module>my-nacos-geteway</module>
+    <module>my-auth</module>
+    <module>my-simple</module>
   </modules>
   
   <dependencies>
