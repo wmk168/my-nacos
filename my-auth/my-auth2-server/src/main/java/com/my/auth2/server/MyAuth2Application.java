@@ -18,8 +18,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * 3、配置、注册中心nacos
  *
  *
- *https://www.cnblogs.com/fp2952/p/8973613.html
- *https://blog.csdn.net/wflovejava/article/details/88558149
+ *https://www.cnblogs.com/fp2952/p/8973613.html jwt非对称token
+ *https://blog.csdn.net/wflovejava/article/details/88558149 zuul no pwd密码
  *https://gitee.com/oplus/open-cloud 开源代码
  *https://gitee.com/w_enhao/open-cloud 开源代码,自定义了很多了功能
  *Cloud-Platform https://github.com/wxiaoqi/Spring-Cloud-Admin

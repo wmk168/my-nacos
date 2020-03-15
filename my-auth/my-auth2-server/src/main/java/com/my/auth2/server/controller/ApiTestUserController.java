@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,11 +28,20 @@ public class ApiTestUserController {
     @Autowired
     private ConsumerTokenServices consumerTokenServices;
     
+    @Autowired
+    private TokenStore tokenStore;
+    
     //测试url：http://127.0.0.1:5070/api/test/user?access_token=cae70267-bdb8-4ac2-839d-538a0b6fb0fe
-    //access_token是登录授权成功后获取到的
+    //access_token是登录授权成功后获取到的，这种方式在web登录同存在的时候就以web为标准，api最好分开
     @RequestMapping("/api/test/user")
     public Principal user(Principal user) {
         return user;
+    }
+    
+    //根据access_token
+    @RequestMapping("/api/user/{access_token}")
+    public Object user(@PathVariable("access_token") String access_token) {
+        return tokenStore.readAuthentication(access_token);
     }
  
     //清楚token,测试通过

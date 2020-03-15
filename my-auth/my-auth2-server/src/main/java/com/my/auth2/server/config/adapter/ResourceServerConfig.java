@@ -11,11 +11,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.my.auth2.server.ex.LoginAuthenticationFailureHandler;
 import com.my.auth2.server.ex.LoginAuthenticationSuccessHandler;
 import com.my.auth2.server.ex.MyAccessDeniedHandler;
 import com.my.auth2.server.ex.MyAuthenticationEntryPoint;
+import com.my.auth2.server.filter.MyLoginUsernamePasswordAuthenticationFilter;
 
 /**
  * 拦截资源服务配置，路径配置
@@ -45,7 +48,20 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     
     @Autowired
 	private LoginAuthenticationSuccessHandler loginAuthenticationSuccessHandler;
+    
+    @Autowired
+    private MyLoginUsernamePasswordAuthenticationFilter myLoginUsernamePasswordAuthenticationFilter;
 	
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+    	super.configure(resources);
+    	/**
+    	 *      如果在数据库配置，或者资源配置了就一定要设置，不然在就会抛下异常
+    	 * Invalid token does not contain resource id (oauth2-resource)
+    	 */
+    	resources.resourceId("my_source");
+    }
+    
     @Override
     public void configure(HttpSecurity http) throws Exception {
     	        
@@ -65,11 +81,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                //验证地址：访问路径加上access_token=xxx才能访问
                .and().authorizeRequests().antMatchers("/api/**","/order/**").authenticated()
                //不用验证
-			   //.and().authorizeRequests().antMatchers("/oauth/**").permitAll()     
+			   //.and().authorizeRequests().antMatchers("/oauth/**","/api/**").permitAll()     
                //.and().anonymous()//对于没有配置权限的其他请求允许匿名访问
                //所有必须都是要授权
                //.and().authorizeRequests().anyRequest().authenticated()
-               
+			   
                /*
                .and().formLogin().permitAll()
                // 登出页
@@ -96,7 +112,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
           		 * 
           		 */
                  ;
+         
     }
 
+    
     
 }

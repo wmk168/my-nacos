@@ -23,9 +23,13 @@ import org.springframework.security.oauth2.provider.client.JdbcClientDetailsServ
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import com.my.auth2.server.ex.MyWebResponseExceptionTranslator;
@@ -51,13 +55,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Autowired
 	private TokenStore tokenStore;
-	//auth token 存储redis
+	
+	//auth token
     @Bean
     public TokenStore tokenStore() {
-        return new RedisTokenStore(redisConnectionFactory);
+    	//存储redis，如果在没有刷新token情况下，再次登录刷新就不会刷新token
+        //return new RedisTokenStore(redisConnectionFactory);
+    	//jwt存储，每次登录都会刷新，jwt也是都是都要更新操作，如果是使用jwt生成的，那么最好使用这个
+        return new JwtTokenStore(jwtAccessTokenConverter());
     }
+    
     @Autowired
     private DataSource dataSource;
+    
     //authorization_code 授权码模式
     @Autowired
     private AuthorizationCodeServices authorizationCodeServices;
@@ -82,7 +92,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     	clientDetailsService.setPasswordEncoder(passwordEncoder);
     	return clientDetailsService;
     }
-   
+    
+    //==========token使用jwt分布式===============
+    @Autowired
+    private JwtAccessTokenConverter twtAccessTokenConverter;
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+    	JwtAccessTokenConverter accessTokenConverter=new JwtAccessTokenConverter();
+    	accessTokenConverter.setSigningKey("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9");
+    	return accessTokenConverter;
+    }
+    @Autowired
+    private TokenEnhancer tokenEnhancer;
     
     //用来配置令牌端点(Token Endpoint)的安全约束
     @Override
@@ -157,8 +178,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
  
+    	endpoints.tokenStore(tokenStore);//token 存储地方，redis等等
+    	//如果是jwt存储，那么就使用jwt存储
+    	if(tokenStore instanceof JwtTokenStore) {
+    		//使用jwt  生成token
+    		endpoints.accessTokenConverter(twtAccessTokenConverter);
+    	}
+    	       
     	endpoints
-		    	 .tokenStore(tokenStore)//token 存储地方
 		         .userDetailsService(userDetailsService)//当刷新token的时候会调用该类信息
 		         .authenticationManager(authenticationManager)//配置管理
 		    	 //.tokenServices(defaultTokenServices())//token
@@ -177,7 +204,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		    	 // 自定义确认授权页面
 		         .pathMapping("/oauth/confirm_access", "/oauth/confirm_access")
 		         // 自定义错误页
-		         .pathMapping("/oauth/error", "/oauth/error");
+		         .pathMapping("/oauth/error", "/oauth/error")
+
 		    	 ;
     }
     
@@ -201,7 +229,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     
     
     /**
-     * 注意，自定义TokenServices的时候，需要设置@Primary，否则报错
+                * 注意，自定义TokenServices的时候，需要设置@Primary，否则报错
      */
     //@Primary
     //@Bean

@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 @Order(1)//去掉这个排序后，默认授权登录页面就无法访问了，坑人，因为启动排序问题，加入这个后，页面权限就可以在这里面写了	
 public class WebClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
@@ -75,8 +75,12 @@ public class WebClientSecurityConfig extends WebSecurityConfigurerAdapter{
 		return authenticationProvider;
 	}
 	
+    //@Autowired
+    //private MyLoginUsernamePasswordAuthenticationFilter myLoginUsernamePasswordAuthenticationFilter;
+
 	//自定义重新过滤器
 	@Bean
+	@Order(-1)
     public MyLoginUsernamePasswordAuthenticationFilter getMyLoginUsernamePasswordAuthenticationFilter() {
     	MyLoginUsernamePasswordAuthenticationFilter my=new MyLoginUsernamePasswordAuthenticationFilter();
     	//注入application,测试通过
@@ -114,23 +118,13 @@ public class WebClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	 * 此方法可以参考，除非是客户端应用
 	 * {@link ResourceServerConfig}
 	 */
-	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		/*
-		 * 默认页面
-		 http    // 配置登陆页/login并允许访问
-         .formLogin().permitAll()
-         // 登出页
-         .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
-         // 其余所有请求全部需要鉴权认证
-         .and().authorizeRequests().anyRequest().authenticated()
-         // 由于使用的是JWT，我们这里不需要csrf
-         .and().csrf().disable(); 
-		 */
-		
-		 //自定义登录授权页面
+
+		//自定义登录授权页面
         http
-         .authorizeRequests().antMatchers("/static/**").permitAll().and()
+          //如果web端和api端放在同一个项目，记得放开路径，不然就拦截进入了登录页面
+         .authorizeRequests().antMatchers("/static/**","/oauth/**").permitAll().and()
+       	 //.anonymous().and()//对于没有配置权限的其他请求允许匿名访问
          //在某个过滤器之前,这里配置无效
          //.addFilterBefore(myLoginAuthenticationProcessingFilter,UsernamePasswordAuthenticationFilter.class)
          //覆盖掉原来过滤器，这里配置无效，要在ResourceServerConfig配置
@@ -142,15 +136,13 @@ public class WebClientSecurityConfig extends WebSecurityConfigurerAdapter{
    		 .successHandler(loginAuthenticationSuccessHandler)//登录成功
    		 .permitAll()
    		 //.defaultSuccessUrl("/login_success") //成功登陆后跳转页面
-   		 .and()
-         .authorizeRequests().anyRequest().authenticated()
+   		 // 登出页
+         //.and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
+   		 //.and().authorizeRequests().anyRequest().authenticated()
          .and()
          .csrf().disable()
          .httpBasic().disable()//不启用，不然页面会弹出一个输入框
-         
           ;
-          
-		  super.configure(http);
 	}
 
 }
