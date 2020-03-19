@@ -23,9 +23,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 
 @Controller
-@Api(value = "UserController", tags = "用户接口", description = "用户接口描述")
-@RequestMapping("user")
-public class UserController {
+@Api(value = "WxController", tags = "微信接口", description = "微信接口描述")
+@RequestMapping("weixin")
+public class WxController {
 	
 	@RequestMapping(path = "reg",method = { RequestMethod.POST})
 	@ResponseBody
