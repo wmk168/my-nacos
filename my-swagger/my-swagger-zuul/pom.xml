@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.nacos</groupId>
+    <artifactId>my-swagger</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <groupId>com.my.nacos</groupId>
+  <artifactId>my-swagger-zuul</artifactId>
+  <version>0.0.1-RELEASE</version>
+  <name>my-swagger-zuul</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <swagger2.version>2.9.0</swagger2.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- netflix -->
+		<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+   		<!-- zuul路由器 -->
+		<dependency>
+ 				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+		</dependency>
+		
+		<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <optional>true</optional>
+		</dependency>
+		
+		
+		<!-- 引入swagger -->
+			<dependency>
+	<groupId>io.springfox</groupId>
+	<artifactId>springfox-swagger2</artifactId>
+	<version>${swagger2.version}</version>
+	</dependency>
+
+	<dependency>
+	<groupId>io.springfox</groupId>
+	<artifactId>springfox-swagger-ui</artifactId>
+	<version>${swagger2.version}</version>
+	<exclusions>
+        <exclusion>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+        </exclusion>
+    </exclusions>
+	</dependency>
+	<!-- 解决 java.lang.NumberFormatException: For input string: ""  -->
+	<dependency>
+    <groupId>io.swagger</groupId>
+    <artifactId>swagger-models</artifactId>
+    <version>1.5.21</version>
+	</dependency>
+	
+	<dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-spring-boot-starter</artifactId>
+        <!--在引用时请在maven中央仓库搜索最新版本号-->
+        <version>2.0.2</version>
+    </dependency>
+
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+	</dependency>
+    
+  </dependencies>
+</project>
