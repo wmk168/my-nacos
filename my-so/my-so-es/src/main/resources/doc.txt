@@ -1,0 +1,70 @@
+1、  使用spring-boot-starter-data-elasticsearch的话
+          如果es服务版本是7.x以上，对应 spring.2.2以上
+          版本不对，就会报链接错误。
+          要么使用es客户端代码直接链接，但是官网建议不用
+           
+2、Document配置说明
+	(1)@Field代表进行索引，无就没有索引
+	(2)@Id 代表主键,不能有多个
+	(3)analyzer=索引分词器,searchAnalyzer=搜索分词器
+		
+	@Document 作用在类，标记实体类为文档对象，一般有两个属性
+		indexName：对应索引库名称
+		type：对应在索引库中的类型
+		shards：分片数量，默认5
+		replicas：副本数量，默认1
+		
+	@Field 作用在成员变量，标记为文档的字段，并指定字段映射属性：
+		type：字段类型，取值是枚举：FieldType
+		index：是否索引，布尔类型，默认是true
+		store：是否存储，布尔类型，默认是false,store 是否单独存储，应该是存储在_source
+		analyzer：分词器名称 
+	
+2、分词器配置说明	
+	(1)ik_max_word
+		会将文本做最细粒度的拆分，比如会将“中华人民共和国人民大会堂”拆分为“中华人民共和国、中华人民、中华、华人、人民共和国、人民、共和国、大会堂、大会、会堂等词语。
+	(2)ik_smart
+		会做最粗粒度的拆分，比如会将“中华人民共和国人民大会堂”拆分为中华人民共和国、人民大会堂。
+		
+	(3)两种分词器使用的最佳实践是：索引时用ik_max_word，在搜索时用ik_smart。参考：https://blog.csdn.net/weixin_44062339/article/details/85006948
+
+3、api使用比较全面
+	https://blog.csdn.net/topdandan/article/details/81436141
+
+4、	Spring Java使用介绍
+
+	https://blog.csdn.net/wang926454/article/details/99649556?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
+	
+	
+	
+	SpringBoot整合ES的方式(TransportClient、Data-ES、Elasticsearch SQL、REST Client)
+	TransportClient：TransportClient即将弃用，所以这种方式不考虑
+	Data-ES：Spring提供的封装的方式，不同版本支持不一样
+	REST Client：官方推荐使用
+
+	Elasticsearch 的官方查询语言是 Query DSL
+	https://www.cnblogs.com/jajian/p/10053504.html
+
+	
+4、elasticsearch-sql	以前x-pack-sql-jdbc插件
+	elasticsearch-sql：免费，很久以前的产品，国人开发，已经不维护了，推荐使用x-pack-sql-jdbc
+	x-pack-sql-jdbc:收费，坑爹，有破解方式
+
+	Elasticsearch史上最全最常用工具清单，包过sql转DSL
+	https://blog.csdn.net/laoyang360/article/details/80645710
+	elasticHD:下载就点击就可以使用了，可以从sql转换成dsl
+	
+	https://blog.csdn.net/eighthroute/article/details/93471525
+	https://elasticsearch.cn/article/687
+	
+	Postman测试：body，row,选择json，然后输入框输入sql，如果不用x-pack,可以封装这个sql执行
+	谷歌浏览器安装sql客户端插件，在输入框输入：http://localhost:9200/
+	https://blog.csdn.net/eighthroute/article/details/93471525
+	https://www.cnblogs.com/jajian/p/10053504.html（有语法）
+	https://blog.csdn.net/fly910905/article/details/81434518（有语法）
+	https://github.com/NLPchina/elasticsearch-sql (官网)
+	
+	
+	
+	使用ElasticSearch踩过的坑
+	https://www.jianshu.com/p/fa31f38d241e

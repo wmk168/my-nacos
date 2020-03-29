@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.my.nacos</groupId>
+    <artifactId>my-so</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <groupId>com.my.nacos</groupId>
+  <artifactId>my-so-es</artifactId>
+  <version>0.0.1-RELEASE</version>
+  <name>my-so-es</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <elasticsearch.version>6.4.0</elasticsearch.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- 使用spring-boot-starter-data-elasticsearch的话
+    	  如果es服务版本是7.x以上，对应 spring.2.2以上
+    	 版本不对，就会报链接错误。
+    	要么使用es客户端代码直接链接，但是官网建议不用
+    	https://www.jianshu.com/p/7019d93219f5
+     -->
+    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+            <!-- <exclusions>
+		        <exclusion>
+		            <groupId>org.elasticsearch.client</groupId>
+		            <artifactId>transport</artifactId>
+		        </exclusion>
+		    </exclusions>  -->
+      </dependency>
+    
+      
+        <!-- <dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>transport</artifactId>
+			<version>7.6.1</version>
+		</dependency> -->
+		
+      <!-- <dependency>
+        <groupId>org.elasticsearch</groupId>
+        <artifactId>elasticsearch</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency> -->
+     <!-- <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>transport</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency>
+       <dependency>
+        <groupId>org.elasticsearch.distribution.integ-test-zip</groupId>
+        <artifactId>elasticsearch</artifactId>
+        <version>${elasticsearch.version}</version>
+        <type>zip</type>
+      </dependency>
+       -->
+      <!-- <dependency>
+        <groupId>org.elasticsearch.plugin</groupId>
+        <artifactId>transport-netty4-client</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency>
+      -->
+      <!-- <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-client</artifactId>
+        <version>${elasticsearch.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>commons-logging</artifactId>
+            <groupId>commons-logging</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency> -->
+      <!-- <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency> -->
+
+    <dependency>
+    	<groupId>org.projectlombok</groupId>
+    	<artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+    	<groupId>com.alibaba</groupId>
+    	<artifactId>fastjson</artifactId>
+    	<version>1.2.62</version>
+    </dependency>
+    
+       <!-- ============Es sql mybatis 整合====================  -->
+    	<!-- mybatis plus start -->
+  		<!-- <dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>${mybatis-plus.version}</version>
+		</dependency> -->
+		
+		<!-- 链接池 -->
+          <!--   <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid-spring-boot-starter.version}</version>
+	        </dependency> -->
+	        
+	       <!--  <dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<scope>runtime</scope>
+			</dependency> -->
+		
+		<!-- 需要x-pack坑爹 -->
+		<!-- <dependency>
+		    <groupId>org.nlpcn</groupId>
+		    <artifactId>elasticsearch-sql</artifactId>
+		    <version>6.3.0.0</version>
+		</dependency> -->
+		  <!-- 需要破解，坑爹 -->
+	    <!--  <dependency>
+		    <groupId>org.elasticsearch.client</groupId>
+		    <artifactId>x-pack-transport</artifactId>
+		    <version>5.6.0</version>
+		</dependency> -->
+		
+  </dependencies>
+  
+
+	 <dependencyManagement>
+  	<dependencies>
+  		  <dependency>
+			    <groupId>org.springframework.boot</groupId>
+			    <artifactId>spring-boot-dependencies</artifactId>
+			    <version>2.2.4.RELEASE</version>
+			    <type>pom</type>
+			     <scope>import</scope>
+			</dependency> 
+  		   <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+  		  <!-- 
+             2.1.0.RELEASE兼容spring cloud Greenwich.RELEASE（2.1.x版本）
+             2.2.0.RELEASE兼容spring cloud Hoxton.RELEASE（2.2.x版本）
+                                      如果升级到2.2.0后：
+             seata版本就是最新版本，提供者服务无法注册到nacos,没有jdbc链接代码可以调用，我觉得这个应该跟jdbc代理代码有关系
+                                      因此，在相关seata分布式项目里面，全部升级到2.2.0,springcloud升级到Hoxton.RELEASE，2.2.x.RELEASE
+      	     -->
+	        <dependency>
+	            <groupId>com.alibaba.cloud</groupId>
+	            <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+	            <version>2.2.0.RELEASE</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+  	</dependencies>
+  </dependencyManagement>
+  
+</project>

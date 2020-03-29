@@ -52,6 +52,8 @@
     <module>my-nacos-geteway</module>
     <module>my-auth</module>
     <module>my-simple</module>
+    <module>my-swagger</module>
+    <module>my-so</module>
   </modules>
   
   <dependencies>
