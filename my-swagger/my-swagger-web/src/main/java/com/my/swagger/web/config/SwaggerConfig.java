@@ -26,8 +26,10 @@ public class SwaggerConfig {
 	@Bean
 	public Docket createRestApi() {
 		Docket docket=new Docket(DocumentationType.SWAGGER_2);
-		docket.groupName("后台管理接口");
+		//docket.groupName("后台管理接口");
 		docket.pathMapping("/")
+		// 是否开启,通过这个配置来区分正式环境
+		.enable(true)
 		.select()
 		.apis(RequestHandlerSelectors.basePackage("com.my.swagger.web.controller"))
 		.paths(PathSelectors.any())
@@ -45,10 +47,10 @@ public class SwaggerConfig {
 				
 	}
 	
-	@Bean
+	//@Bean
     public Docket createWxRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("微信管理接口")
+               // .groupName("微信管理接口")
                 .apiInfo(apiWxInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.my.swagger.web.controller"))//api接口包扫描路径

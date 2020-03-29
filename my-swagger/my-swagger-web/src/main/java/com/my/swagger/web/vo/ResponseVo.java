@@ -2,8 +2,13 @@ package com.my.swagger.web.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiResponses;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(description  = "公共响应数据")
 public class ResponseVo<T> {
 	@ApiModelProperty(value = "响应编码")

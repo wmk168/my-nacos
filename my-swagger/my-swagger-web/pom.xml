@@ -14,6 +14,7 @@
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <swagger2.version>2.9.0</swagger2.version>
   </properties>
   <dependencies>
     <dependency>
@@ -31,13 +32,13 @@
 	<dependency>
 	<groupId>io.springfox</groupId>
 	<artifactId>springfox-swagger2</artifactId>
-	<version>2.9.2</version>
+	<version>${swagger2.version}</version>
 	</dependency>
 
 	<dependency>
 	<groupId>io.springfox</groupId>
 	<artifactId>springfox-swagger-ui</artifactId>
-	<version>2.9.2</version>
+	<version>${swagger2.version}</version>
 	<exclusions>
         <exclusion>
             <groupId>io.swagger</groupId>
@@ -63,5 +64,21 @@
 		<groupId>org.projectlombok</groupId>
 		<artifactId>lombok</artifactId>
 	</dependency>
+	
+	 <!--Netflix Eureka依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+        <!-- eureka提供者，不要用spring-cloud-starter-netflix-eureka-server -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-devtools</artifactId>
+        </dependency>
   </dependencies>
 </project>

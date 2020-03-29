@@ -10,5 +10,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>my-swagger-web</module>
+    <module>my-swagger-zuul</module>
   </modules>
 </project>
